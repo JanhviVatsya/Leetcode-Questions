@@ -1,0 +1,19 @@
+problem link:  https://leetcode.com/problems/delete-and-earn/description/
+Khud se kiya hai
+Try to improve the hash map's space complexity
+
+
+int deleteAndEarn(vector<int>& nums) {
+      vector<int>cnt(10002,0);
+      for(int i=0; i<nums.size(); i++){
+          cnt[nums[i]]+=nums[i];
+      }
+      int prev2=cnt[1];
+      int prev1= max(cnt[1], cnt[2]);
+      for(int i=3; i<cnt.size(); i++){
+          int ans=max(prev2+cnt[i], prev1);
+          prev2=prev1;
+          prev1=ans;
+      }
+      return prev1;
+    }
