@@ -1,4 +1,6 @@
- vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
+link: https://leetcode.com/problems/insert-interval/description/?envType=daily-question&envId=2024-03-17
+
+vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
         vector<vector<int>> ans;
         int i=0;
         while(i<intervals.size() && intervals[i][1]<newInterval[0]){
