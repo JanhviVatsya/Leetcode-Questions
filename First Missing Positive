@@ -1,0 +1,38 @@
+Revise Array for hash table and cycle sort concept
+
+M1: Brute force->
+1 se leke n+1 tk dekhte jao ki ye number present hai ya nahi
+TC: O(n^2)
+__________________________________________________________________________________
+
+M2: Using Binary Search
+Sort karo array aur first missing positive number khoj lo
+TC: O(n log n)-> fir bhi bada hai
+__________________________________________________________________________________
+
+M3: Using Map
+TC: O(n)
+SC: O(n)
+__________________________________________________________________________________
+
+M4: Using Array as hash table
+int firstMissingPositive(vector<int>& nums) {
+        int n=nums.size();
+        for(int i=0; i<n; i++){
+            if(nums[i]<=0) nums[i]=n+1;
+        }
+        for(int i=0; i<n; i++){
+            if(abs(nums[i])<=n && nums[abs(nums[i])-1]>0){
+                nums[abs(nums[i])-1]*=-1;
+            }
+        }
+        for(int i=0; i<n; i++){
+            if(nums[i]>0){
+                return i+1;
+            }
+        }
+        return n+1;
+    }
+____________________________________________________________________________________
+
+M5: Cycle Sort -> best pr revision ke time seekhenge
