@@ -1,0 +1,21 @@
+M1: DP
+Memoization written here-> It is giving memory limit exceeded error
+int solve(int sum, int maxi, int k, vector<int> &dp)
+    {
+        if(sum >= k) return 0;
+        if(dp[maxi] != -1)return dp[maxi];
+        int a = 1 + solve(sum + 1, maxi + 1, k, dp);
+        int b = 1 + solve(sum + maxi, maxi, k, dp);
+
+        return dp[maxi] = min(a, b);
+    }
+    int minOperations(int k) {
+        vector<int> dp(k + 1, -1);
+        return solve(1, 1, k, dp);
+    }
+
+M2: OPTIMAL (Using Maths)
+ int minOperations(int k) {
+        int a = sqrt(k);
+        return a + (k - 1) / a - 1;
+    }
