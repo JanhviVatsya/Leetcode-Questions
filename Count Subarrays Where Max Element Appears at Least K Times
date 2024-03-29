@@ -1,0 +1,16 @@
+long long countSubarrays(vector<int>& nums, int k) {
+        int maxele=*max_element(nums.begin(), nums.end());
+        int i=0, j=0;
+        int count=0;
+        long long ans=0;
+        for(int j=0; j<nums.size(); j++){
+            if(nums[j]==maxele) count++;
+            while(count>=k){
+                if(nums[i++]==maxele){
+                    count--;
+                }
+            }
+            ans+=i;
+        }
+        return ans;
+    }
