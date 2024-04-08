@@ -1,0 +1,47 @@
+Brute force 
+TC: O(n^2)
+SC: O(n+n)
+Code:
+int countStudents(vector<int>& students, vector<int>& sandwiches) {
+        queue<int>stu;
+        stack<int>sand;
+        int n=sandwiches.size();
+        for(int i=0; i<students.size(); i++){
+            stu.push(students[i]);
+            sand.push(sandwiches[n-1-i]);
+        }
+        int noeater=0;
+        while(stu.size()!=0){
+            if(stu.front()==sand.top()){
+                stu.pop();
+                sand.pop();
+                noeater=0;
+            }
+            else{
+                if(noeater==stu.size()) break;
+                stu.push(stu.front());
+                stu.pop();
+                noeater++;
+            }
+        }
+        return noeater;
+    }
+
+Optimal Solution:
+TC: O()
+SC: O()
+Code: 
+int countStudents(vector<int>& students, vector<int>& sandwiches) {
+        int zero=0, one=0;
+        for(int student: students){
+            if(student==0) zero++;
+            else one++;
+        }
+        for(int sandwich: sandwiches){
+            if(sandwich==0 && zero==0) return one;
+            if(sandwich==1 && one==0) return zero;
+            if(sandwich==0) zero--;
+            else one--;
+        }
+        return 0;
+    }
